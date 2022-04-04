@@ -1,0 +1,22 @@
+#include "tm4c123gh6pm.h"
+int main()
+{
+  SYSCTL_RCGCGPIO_R |= (1U<<4) | (1U<<5) //clock enable to GPIO port E anf F
+  SYSCTL_RCGCADC_R |=1; //Analog clock enable to ADC0 module
+  ADC0_ACTSS_R &= ~8; //disable sample sequencer 3 during configuration
+  ADC0_EMUX_R &= ~0xF000; // software trigger conversion
+ // ADC0_PSSI_R 
+  //GPIO_PORTF_DIR_R |= (1U<<1) | (1U<<2) | (1U<<3); //output direction for PF1,PF2,PF3 (all LED)
+  GPIO_PORTF_DIR_R = 0xFFU; // port F direction as output
+  GPIO_PORTE_DIR_R = 0x00U; //port E direction as input
+  GPIO_PORTF_DEN_R = 0xFFU; //digital function enable for port F
+  GPIO_PORTE_DEN_R = 0x00U; //disabling digital function enable for port E
+  GPIO_PORTE_AFSEL_R |= (1U<<3); // alternate function select for pin PE3
+  GPIO_PORTE_AMSEL_R |= (1U<<3); // analog mode select for pin PE3
+  
+  ADC0_SSMUX3_R =0;
+  ADC0_SSCTL3_R |=6; //take one sample at a time,set flag at first sample
+  ADC0_ACTSS_R |= (1U<<3); //enable ss3
+  
+  return 0;
+}
