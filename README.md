@@ -4,16 +4,16 @@ We have made a temperature controlled fan using tm4c123gh6pm board ,NTC temperat
 
 Circuit connections :
 
-tm4c123gh6pm board
+tm4c123gh6pm board  
 +3.3V :  Vcc source for temperature sensor  
 GND   : Common ground  
 PB4   : Motor driver  
-PE3   : Connected to NTC sensor and 10k resistor 
+PE3   : Connected to NTC sensor and 10k resistor  
 
-EN1 of motor driver : output from PB4
-EN2 of motor driver : common ground 
-Vcc of motor driver : 9V from battery source
-GND of motor driver : Common Ground 
+EN1 of motor driver : output from PB4  
+EN2 of motor driver : common ground   
+Vcc of motor driver : 9V from battery source  
+GND of motor driver : Common Ground  
 
 The temperature sensor will get the surrounding temperature and based on the temperature it will turn on the fan and control its speed
 
